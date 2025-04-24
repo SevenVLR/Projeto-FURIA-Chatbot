@@ -47,33 +47,23 @@ const furiaData = {
   stats: {
     KSCERATO: { 
       kd: 1.25, 
-      adr: 85.4, 
-      maps: ['Mirage (1.35 rating)', 'Inferno (1.28 rating)'],
-      role: "Entry Fragger"
+      adr: 85.4
     },
     YEKINDAR: { 
       kd: 1.10, 
-      adr: 78.9, 
-      maps: ['Vertigo (1.22 rating)', 'Overpass (1.18 rating)'],
-      role: "IGL/Entry"
+      adr: 78.9
     },
     yuurih: { 
       kd: 1.18, 
-      adr: 82.1, 
-      maps: ['Inferno (1.30 rating)', 'Nuke (1.25 rating)'],
-      role: "Lurker"
+      adr: 82.1
     },
     moloboy: { 
       kd: 1.05, 
-      adr: 75.3, 
-      maps: ['Ancient (1.20 rating)', 'Mirage (1.15 rating)'],
-      role: "Support"
+      adr: 75.3
     },
     FalleN: { 
-      kd: 1.08, 
-      adr: 70.2, 
-      maps: ['Mirage (1.25 rating)', 'Overpass (1.20 rating)'],
-      role: "AWPer"
+      kd: 1.05, 
+      adr: 70.5
     }
   },
   media: {
@@ -82,10 +72,6 @@ const furiaData = {
       {title: "Treino secreto na gaming house", url: "https://youtu.be/clipe2"},
       {title: "Entrevista com KSCERATO", url: "https://youtu.be/clipe3"}
     ],
-    phrases: [
-      {text: "É a tropa da FURIA!", player: "KSCERATO", context: "Pós-vitória em torneio"},
-      {text: "Tá maluco!", player: "yuurih", context: "Play inacreditável"}
-    ]
   },
   quiz: [
     {
@@ -124,7 +110,7 @@ const furiaData = {
     {year: 2020, event: "Chegada ao top 5 mundial"},
     {year: 2022, event: "Título do ESL Pro League"},
     {year: 2023, event: "Contratação de FalleN e chelo"},
-    {year: 2025, event: "Contratação de YEKINDAR e moloboy"}
+    {year: 2025, event: "Contratação de moloboy e YEKINDAR se junta como stand-in"}
   ]
 };
 
@@ -135,11 +121,11 @@ const userQuizState = {};
 function getRandomResponse() {
   const responses = [
     "Beleza, anota aí!",
-    "Tá na mão, parceiro!",
-    "É nois! Olha só:",
+    "Tá na mão!",
+    "Olha só:",
     "Ah, isso eu sei!",
     "Pergunta boa, vem ver:",
-    "Tá ligado? Dá uma olhada:"
+    "Dá uma olhada:"
   ];
   return responses[Math.floor(Math.random() * responses.length)];
 }
@@ -223,11 +209,22 @@ function sendPlayerStats(chatId, playerName = null) {
     }
   }
   
-  let response = `${getRandomResponse()}\n\n 📈 *Estatísticas da Equipe:*\n\n`;
+  let response = `${getRandomResponse()}\n\n📈 *Estatísticas da Equipe:*\n\n`;
+
+  // Mapeamento de emojis por jogador
+  const playerEmojis = {
+    'KSCERATO': '🇧🇷',
+    'FalleN': '🇧🇷',
+    'YEKINDAR': '🇱🇻',
+    'moloboy': '🇰🇿',   
+    'yuurih': '🇧🇷'
+  };
+  
   for (const [player, stats] of Object.entries(furiaData.stats)) {
-    response += `*${player}*: K/D ${stats.kd} | ADR ${stats.adr}\n`;
+    const emoji = playerEmojis[player] || '🎮'; // Emoji padrão se não encontrado
+    response += `${emoji} *${player}*: K/D ${stats.kd} | ADR ${stats.adr}\n`;
   }
-  response += `\nDigite o nome de um jogador para ver detalhes (ex: "KSCERATO")`;
+  
   bot.sendMessage(chatId, response, {parse_mode: 'Markdown'});
 }
 
@@ -315,7 +312,7 @@ function handleQuizAnswer(chatId, userId, answer) {
     if (score === total) {
       response += `🌟 *PERFEITO!* Você é um verdadeiro fã da FURIA!`;
     } else if (score >= total * 0.7) {
-      response += `👍 Bom trabalho! Você conhece bem a tropa!`;
+      response += `👍 Bom trabalho! Você conhece bem a FURIA!`;
     } else {
       response += `💡 Continue acompanhando a FURIA para melhorar!`;
     }
@@ -388,7 +385,7 @@ bot.on('message', (msg) => {
     let response = `${getRandomResponse()}\n\n 🎥 *Resumo do último jogo:*\n\n`;
     response += `⚔️ *FURIA vs ${match.opponent} ${match.score}*\n\n`;
     response += `🌟 *Destaques:*\n- ${match.highlights.join('\n- ')}\n\n`;
-    response += `🔥 *Análise rápida:* A tropa mostrou um ${match.win ? 'excelente' : 'bom'} desempenho ${match.win ? 'e garantiu a vitória' : 'mas não foi suficiente'}!`;
+    response += `🔥 *Análise rápida:* A FURIA mostrou um ${match.win ? 'excelente' : 'bom'} desempenho ${match.win ? 'e garantiu a vitória' : 'mas não foi suficiente'}!`;
     bot.sendMessage(chatId, response, {parse_mode: 'Markdown'});
   }
   
@@ -397,10 +394,6 @@ bot.on('message', (msg) => {
     let response = `${getRandomResponse()}\n\n 🎬 *Conteúdos exclusivos:*\n\n`;
     furiaData.media.clips.forEach(clip => {
       response += `📹 *${clip.title}*: [Assista aqui](${clip.url})\n`;
-    });
-    response += `\n🎙️ *Frases marcantes:*\n`;
-    furiaData.media.phrases.forEach(phrase => {
-      response += `"${phrase.text}" - *${phrase.player}* (${phrase.context})\n`;
     });
     bot.sendMessage(chatId, response, {parse_mode: 'Markdown', disable_web_page_preview: true});
   }
@@ -415,7 +408,7 @@ bot.on('message', (msg) => {
     let response = `${getRandomResponse()}\n\n 🛒 *Loja Oficial FURIA*\n\n`;
     response += `Confira nossos produtos exclusivos:\n`;
     response += `🛍️ [Visite a loja](${furiaData.store.url})\n\n`;
-    response += `🖤🖤 Mostre seu apoio com os produtos da tropa!`;
+    response += `🖤🖤 Mostre seu apoio com os produtos da FURIA!`;
     bot.sendMessage(chatId, response, {parse_mode: 'Markdown', disable_web_page_preview: true});
   }
   
@@ -442,9 +435,9 @@ bot.on('message', (msg) => {
   // Comando não reconhecido
   else {
     const randomResponses = [
-      "Fala aí, tropa! Não entendi... Que tal tentar 'jogos', 'resultados' ou 'stats'?",
+      "Não entendi muito bem... Que tal tentar 'jogos', 'resultados' ou 'stats'?",
       "Hmm, não peguei o que você disse. Digite 'menu' para ver todas as opções!",
-      "É a tropa! Mas não entendi. Me chama com 'agenda', 'placar' ou 'quiz' que eu te ajudo!",
+      "Não faço ideia do que você quis falar. Me chama com 'agenda', 'placar' ou 'quiz' que eu te ajudo!",
       "Vem tranquilo! Não consegui entender. Tenta algo como 'próximos jogos' ou 'estatísticas'!"
     ];
     const response = randomResponses[Math.floor(Math.random() * randomResponses.length)];
