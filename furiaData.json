@@ -1,0 +1,107 @@
+{
+    "team": {
+      "name": "FURIA Esports",
+      "founded": 2017,
+      "players": ["KSCERATO", "YEKINDAR", "yuurih", "moloboy", "FalleN"],
+      "coach": "guerri"
+    },
+    "schedule": [
+      {
+        "id": 1,
+        "date": "add_dynamic_date_in_code",
+        "time": "18:00",
+        "opponent": "Team Liquid",
+        "tournament": "ESL Pro League",
+        "link": "https://twitch.tv/esl_csgo"
+      },
+      {
+        "id": 2,
+        "date": "add_dynamic_date_in_code",
+        "time": "15:30",
+        "opponent": "Natus Vincere",
+        "tournament": "BLAST Premier",
+        "link": "https://twitch.tv/blastpremier"
+      }
+    ],
+    "results": {
+      "lastMatch": {
+        "opponent": "MIBR",
+        "score": "2-1",
+        "win": true,
+        "highlights": [
+          "KSCERATO 1v3 clutch na Mirage",
+          "YEKINDAR 4 kills com Deagle no pistol round",
+          "yuurih 1v2 no mapa decisivo"
+        ]
+      },
+      "liveMatch": null
+    },
+    "stats": {
+      "KSCERATO": { 
+        "kd": 1.25, 
+        "adr": 85.4
+      },
+      "YEKINDAR": { 
+        "kd": 1.10, 
+        "adr": 78.9
+      },
+      "yuurih": { 
+        "kd": 1.18, 
+        "adr": 82.1
+      },
+      "moloboy": { 
+        "kd": 1.05, 
+        "adr": 75.3
+      },
+      "FalleN": { 
+        "kd": 1.05, 
+        "adr": 70.5
+      }
+    },
+    "media": {
+      "clips": [
+        {"title": "Melhores momentos vs MIBR", "url": "https://youtu.be/clipe1"},
+        {"title": "Treino secreto na gaming house", "url": "https://youtu.be/clipe2"},
+        {"title": "Entrevista com KSCERATO", "url": "https://youtu.be/clipe3"}
+      ]
+    },
+    "quiz": [
+      {
+        "id": 1,
+        "question": "Em que ano a FURIA foi fundada?",
+        "options": ["2016", "2017", "2018"],
+        "answer": 1,
+        "explanation": "A FURIA foi fundada em 2017 e rapidamente se tornou uma das principais equipes do cenário brasileiro."
+      },
+      {
+        "id": 2,
+        "question": "Quem foi o primeiro jogador a entrar para o time principal de CS?",
+        "options": ["KSCERATO", "ArT", "yuurih"],
+        "answer": 0,
+        "explanation": "KSCERATO foi a primeira contratação de peso da FURIA em 2018."
+      },
+      {
+        "id": 3,
+        "question": "Qual o maior achievement da FURIA em CS?",
+        "options": ["Vencer o ESL Pro League", "Chegar ao top 3 mundial", "Ganhar um Major"],
+        "answer": 0,
+        "explanation": "A FURIA venceu o ESL Pro League em 2022, seu maior título até hoje."
+      }
+    ],
+    "store": {
+      "url": "https://loja.furia.gg",
+      "promotions": [
+        "🔥 CAMISA FURIA 2024 - 20% OFF (R$199 → R$159)",
+        "🎧 HEADSET FURIA EDITION - Lançamento!"
+      ]
+    },
+    "history": [
+      {"year": 2017, "event": "Fundação da organização"},
+      {"year": 2018, "event": "Formação do time de CS:GO"},
+      {"year": 2019, "event": "Primeira final internacional (DreamHack Open)"},
+      {"year": 2020, "event": "Chegada ao top 5 mundial"},
+      {"year": 2022, "event": "Título do ESL Pro League"},
+      {"year": 2023, "event": "Contratação de FalleN e chelo"},
+      {"year": 2025, "event": "Contratação de moloboy e YEKINDAR se junta como stand-in"}
+    ]
+  }
